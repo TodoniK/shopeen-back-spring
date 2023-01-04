@@ -7,7 +7,6 @@ interface ResponsesService {
     fun createResponse(response: Response): Response?
     fun getResponses(): List<Response>
     fun getResponseById(idQuestion: String): Response?
-    fun updateResponse(response: Response): Response?
     fun deleteResponse(idQuestion: String)
     fun getBilanById(idQuestion: String) : Bilan?
     fun getBilan() : Bilan?

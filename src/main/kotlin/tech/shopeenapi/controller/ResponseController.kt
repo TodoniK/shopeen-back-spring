@@ -54,23 +54,6 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
         }
     }
 
-    @Operation(summary = "Modify an already sent response", description = "Returns response if successful")
-    @ApiResponses(
-        value = [
-            ApiResponse(responseCode = "200", description = "Successful Operation"),
-            ApiResponse(responseCode = "404", description = "Response searched doesn't exists"),
-        ]
-    )
-    @PutMapping("/responses")
-    fun updateResponse(@RequestBody response: Response): ResponseEntity<Response> {
-        val responseByService = ResponsesService.updateResponse(response)
-        return if (responseByService != null) {
-            ResponseEntity(ResponsesService.createResponse(response), HttpStatus.CREATED)
-        } else {
-            ResponseEntity(ResponsesService.createResponse(response), HttpStatus.I_AM_A_TEAPOT)
-        }
-    }
-
     @Operation(summary = "Delete a response by id", description = "Returns 200 if successful")
     @ApiResponses(
         value = [

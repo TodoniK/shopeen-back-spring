@@ -31,15 +31,6 @@ class ResponsesServiceImpl(private val responseRepository: ResponseRepository) :
         }
     }
 
-    override fun updateResponse(response: Response): Response? {
-        val exists = responseRepository.existsById(response.toResponseDTO().idQuestion)
-        return if(exists){
-            responseRepository.save(response.toResponseDTO()).toResponseEntity()
-        } else {
-            null
-        }
-    }
-
     @Throws(HttpStatusCodeException::class)
     override fun deleteResponse(idQuestion: String) {
         val exists = responseRepository.existsById(idQuestion)
