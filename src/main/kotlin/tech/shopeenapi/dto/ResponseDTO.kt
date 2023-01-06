@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 
 @Component
 data class ResponseDTO(
-    @Id
+    @Id // ObjectId
     val idQuestion: String = "Default question id",
     val userResponse: Int = 0,
 )
