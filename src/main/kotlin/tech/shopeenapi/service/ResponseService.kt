@@ -8,6 +8,5 @@ interface ResponsesService {
     fun getResponses(): List<Response>
     fun getResponseById(idQuestion: String): Response?
     fun deleteResponse(idQuestion: String)
-    fun getBilanById(idQuestion: String) : Bilan?
     fun getBilan() : Bilan?
 }

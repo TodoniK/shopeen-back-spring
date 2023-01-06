@@ -76,15 +76,5 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
     fun getBilan(): ResponseEntity<Bilan> =
         ResponseEntity.ok(ResponsesService.getBilan())
 
-    @Operation(summary = "Get power bilan according to a uniq response", description = "Returns a bilan composed of 3 values if successful")
-    @ApiResponses(
-        value = [
-            ApiResponse(responseCode = "200", description = "Successful Operation"),
-            ApiResponse(responseCode = "404", description = "Response passed doesn't exists"),
-        ]
-    )
-    @GetMapping("/bilan/{idQuestion}")
-    fun getBilanById(@PathVariable idQuestion: String): ResponseEntity<Bilan> =
-        ResponseEntity.ok(ResponsesService.getBilanById(idQuestion))
 
 }

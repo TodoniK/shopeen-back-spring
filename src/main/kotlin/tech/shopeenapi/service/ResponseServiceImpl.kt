@@ -46,14 +46,6 @@ class ResponsesServiceImpl(private val responseRepository: ResponseRepository) :
             null
         }
     }
-    override fun getBilanById(idQuestion: String): Bilan? {
-        val response = this.getResponseById(idQuestion)
-        return if( response != null ) {
-            Bilan(response.userResponse)
-        } else {
-            null
-        }
-    }
 }
 
 fun Response.toResponseDTO() = ResponseDTO(
