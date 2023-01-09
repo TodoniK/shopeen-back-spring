@@ -13,7 +13,7 @@ import tech.shopeenapi.service.ResponsesService
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
-class ResponsesController(private val ResponsesService: ResponsesService) {
+class ResponsesController(private val responsesService: ResponsesService) {
 
     @Operation(summary = "Get all the responses sent by the user", description = "Returns all entities if successful")
     @ApiResponses(
@@ -24,7 +24,7 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
     )
     @GetMapping("/responses")
     fun getResponses(): ResponseEntity<List<Response>> =
-        ResponseEntity.ok(ResponsesService.getResponses())
+        ResponseEntity.ok(responsesService.getResponses())
 
     @Operation(summary = "Get a specific response by id", description = "Returns a unique response")
     @ApiResponses(
@@ -35,7 +35,7 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
     )
     @GetMapping("/responses/{idQuestion}")
     fun getResponse(@PathVariable idQuestion: String) =
-        ResponseEntity.ok(ResponsesService.getResponseById(idQuestion))
+        ResponseEntity.ok(responsesService.getResponseById(idQuestion))
 
     @Operation(summary = "Send to DB a response entered by the user", description = "Returns 200 if added correctly")
     @ApiResponses(
@@ -45,14 +45,9 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
         ]
     )
     @PostMapping("/responses")
-    fun createResponse(@RequestBody response: Response): ResponseEntity<Response> {
-        val responseByService = ResponsesService.createResponse(response)
-        return if(responseByService != null) {
-            ResponseEntity(ResponsesService.createResponse(response), HttpStatus.CREATED)
-        } else {
-            ResponseEntity(ResponsesService.createResponse(response), HttpStatus.I_AM_A_TEAPOT)
-        }
-    }
+    fun createResponse(@RequestBody response: Response): ResponseEntity<Response> =
+        ResponseEntity.ok(responsesService.createResponse(response))
+
 
     @Operation(summary = "Delete a response by id", description = "Returns 200 if successful")
     @ApiResponses(
@@ -63,7 +58,7 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
     )
     @DeleteMapping("/responses/{idQuestion}")
     fun deleteResponse(@PathVariable idQuestion: String): ResponseEntity<Unit> =
-        ResponseEntity(ResponsesService.deleteResponse(idQuestion), HttpStatus.OK)
+        ResponseEntity(responsesService.deleteResponse(idQuestion), HttpStatus.OK)
 
     @Operation(summary = "Get final power bilan with all responses", description = "Returns a bilan composed of 3 values if successful")
     @ApiResponses(
@@ -74,7 +69,6 @@ class ResponsesController(private val ResponsesService: ResponsesService) {
     )
     @GetMapping("/bilan")
     fun getBilan(): ResponseEntity<Bilan> =
-        ResponseEntity.ok(ResponsesService.getBilan())
-
+        ResponseEntity.ok(responsesService.getBilan())
 
 }

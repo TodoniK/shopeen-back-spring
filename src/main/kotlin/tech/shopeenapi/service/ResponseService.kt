@@ -1,12 +1,59 @@
 package tech.shopeenapi.service
 
+import org.springframework.stereotype.Service
+import org.springframework.web.client.HttpStatusCodeException
+import tech.shopeenapi.dto.ResponseDTO
 import tech.shopeenapi.entity.Bilan
 import tech.shopeenapi.entity.Response
+import tech.shopeenapi.repository.ResponseRepository
 
-interface ResponsesService {
-    fun createResponse(response: Response): Response?
-    fun getResponses(): List<Response>
-    fun getResponseById(idQuestion: String): Response?
-    fun deleteResponse(idQuestion: String)
-    fun getBilan() : Bilan?
+@Service
+class ResponsesService(private val responseRepository: ResponseRepository) {
+
+    fun getResponses(): List<Response> {
+        return responseRepository.findAll().map { it.toResponseEntity() }
+    }
+
+     fun getResponseById(idQuestion: String): Response? {
+        val optionalResponses = responseRepository.findById(idQuestion)
+        return if( optionalResponses.isPresent ) {
+            optionalResponses.get().toResponseEntity()
+        } else {
+            null
+        }
+    }
+
+     fun createResponse(response: Response): Response? {
+        return if (response.idQuestion != "Default question id") {
+            responseRepository.save(response.toResponseDTO()).toResponseEntity()
+        } else {
+            null
+        }
+    }
+
+    @Throws(HttpStatusCodeException::class)
+     fun deleteResponse(idQuestion: String) {
+        val exists = responseRepository.existsById(idQuestion)
+
+        if (exists) {
+            responseRepository.deleteById(idQuestion)
+        }
+    }
+     fun getBilan(): Bilan? {
+        return if(this.getResponses().isNotEmpty()){
+            Bilan().calculerBilan(this.getResponses())
+        }else {
+            null
+        }
+    }
 }
+
+fun Response.toResponseDTO() = ResponseDTO(
+    idQuestion = this.idQuestion,
+    userResponse = this.userResponse
+)
+
+fun ResponseDTO.toResponseEntity() = Response(
+    idQuestion = this.idQuestion,
+    userResponse = this.userResponse
+)

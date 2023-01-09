@@ -1,9 +1,12 @@
 package tech.shopeenapi.dto
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.TypeAlias
+import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.stereotype.Component
 
-@Component
+@Document(collection = "response")
+@TypeAlias("Response")
 data class ResponseDTO(
     @Id // ObjectId
     val idQuestion: String = "Default question id",
