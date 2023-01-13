@@ -50,10 +50,12 @@ class ResponsesService(private val responseRepository: ResponseRepository) {
 
 fun Response.toResponseDTO() = ResponseDTO(
     idQuestion = this.idQuestion,
-    userResponse = this.userResponse
+    userResponse = this.userResponse,
+    consoMoy = this.consoMoy
 )
 
 fun ResponseDTO.toResponseEntity() = Response(
     idQuestion = this.idQuestion,
-    userResponse = this.userResponse
+    userResponse = this.userResponse,
+    consoMoy = this.consoMoy
 )

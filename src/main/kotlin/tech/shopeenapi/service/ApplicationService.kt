@@ -1,40 +1,49 @@
 package tech.shopeenapi.service
 
+import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 import tech.shopeenapi.dto.ApplicationDTO
 import tech.shopeenapi.entity.Application
 import tech.shopeenapi.repository.ApplicationRepository
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.*
 
 
 @Service
 class ApplicationService(private val applicationRepository: ApplicationRepository) {
 
-    fun getApplicationsHistorics(): List<Application> {
+    fun getApplicationsHistorical(): List<Application> {
         return applicationRepository.findAll().map { it.toAppEntity() }
     }
 
-     fun createApplicationHistoric(application: Application): Application? {
-        return if (application.appName != "Default app name") {
+     fun createApplicationHistorical(application: Application): Application? {
+        return if (application.idExtName != "Default app name") {
             applicationRepository.save(application.toAppDTO()).toAppEntity()
         } else {
             null
         }
     }
 
+    fun getApplicationsHistoricalByName(name: String): List<Application> {
+        return applicationRepository.findApplicationDTOByIdExtName(name).map { it.toAppEntity() }
+    }
+
 }
 
 fun Application.toAppDTO() = ApplicationDTO(
-    appName = this.appName,
+    _id = ObjectId(),
+    idExtName = this.idExtName,
     bilanEuro = this.bilanEuro,
     bilanCO2 = this.bilanCO2,
     bilanEnergy = this.bilanEnergy,
-    measurementDate = Date()
+    measurementDate = LocalDate.now()
 )
 
 fun ApplicationDTO.toAppEntity() = Application(
-    appName = this.appName,
+    idExtName = this.idExtName,
     bilanEuro = this.bilanEuro,
     bilanCO2 = this.bilanCO2,
     bilanEnergy = this.bilanEnergy,
+    measurementDate = this.measurementDate
 )

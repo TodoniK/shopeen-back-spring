@@ -13,18 +13,29 @@ import tech.shopeenapi.service.ApplicationService
 @RequestMapping("/api")
 class ApplicationControllerController(private val applicationService: ApplicationService) {
     
-    @Operation(summary = "Get all bilan of all applications", description = "Returns multiples dated bilans of Orange developped applications if successful")
+    @Operation(summary = "Get all bilan of all applications", description = "Returns multiples dated bilans of Orange developed applications if successful")
     @ApiResponses(
         value = [
             ApiResponse(responseCode = "200", description = "Successful Operation"),
-            ApiResponse(responseCode = "404", description = "Apps historics tab is empty"),
+            ApiResponse(responseCode = "404", description = "Apps historical tab is empty"),
         ]
     )
     @GetMapping("/appli")
     fun getApplicationsHistoric(): ResponseEntity<List<Application>> =
-        ResponseEntity.ok(applicationService.getApplicationsHistorics())
+        ResponseEntity.ok(applicationService.getApplicationsHistorical())
 
-    @Operation(summary = "Post a dated historic bilan of an Orange developped application", description = "Returns 200 if added correctly")
+    @Operation(summary = "Get all bilan of one app", description = "Returns multiples dated bilans of Orange developed application if successful")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "Successful Operation"),
+            ApiResponse(responseCode = "404", description = "App historical tab is empty"),
+        ]
+    )
+    @GetMapping("/appli/{nomApp}")
+    fun getApplicationsHistoricByName(@PathVariable nomApp: String): ResponseEntity<List<Application>> =
+        ResponseEntity.ok(applicationService.getApplicationsHistoricalByName(nomApp))
+
+    @Operation(summary = "Post a dated historic bilan of an Orange developed application", description = "Returns 200 if added correctly")
     @ApiResponses(
         value = [
             ApiResponse(responseCode = "200", description = "Successful Operation"),
@@ -33,6 +44,6 @@ class ApplicationControllerController(private val applicationService: Applicatio
     )
     @PostMapping("/appli")
     fun postAppBilan(@RequestBody app: Application): ResponseEntity<Application> =
-        ResponseEntity.ok(applicationService.createApplicationHistoric(app))
+        ResponseEntity.ok(applicationService.createApplicationHistorical(app))
 
 }

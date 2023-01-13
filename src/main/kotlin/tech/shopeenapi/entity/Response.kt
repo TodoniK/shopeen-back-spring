@@ -19,4 +19,11 @@ data class Response(
         maximum = "999"
     )
     val userResponse: Int,
+
+    @field:Schema(
+        description = "Average consumption of the entity measured",
+        example = "16",
+        type = "double",
+    )
+    val consoMoy: Double,
 )

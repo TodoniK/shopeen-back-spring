@@ -1,6 +1,7 @@
 package tech.shopeenapi.entity
 
 import io.swagger.v3.oas.annotations.media.Schema
+import java.time.LocalDate
 import java.util.Date
 
 @Schema(description = "Bilan of an application, dated")
@@ -10,7 +11,7 @@ data class Application(
         example = "nbPC",
         type = "string",
     )
-    val appName: String,
+    val idExtName: String,
 
     @field:Schema(
         description = "Financial cost of the measured system, based on its energy consumption",
@@ -38,5 +39,11 @@ data class Application(
         maximum = "inf"
     )
     val bilanEnergy: Int,
+
+    @field:Schema(
+        description = "Measurement date of the system bilan",
+        example = "16/02/2002 16:45",
+    )
+    val measurementDate: LocalDate = LocalDate.now()
 
 )
