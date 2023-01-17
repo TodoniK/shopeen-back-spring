@@ -31,14 +31,17 @@ class ResponsesService(private val responseRepository: ResponseRepository) {
         }
     }
 
-    @Throws(HttpStatusCodeException::class)
-     fun deleteResponse(idQuestion: String) {
+    fun deleteResponse(idQuestion: String): Boolean {
         val exists = responseRepository.existsById(idQuestion)
 
-        if (exists) {
-            responseRepository.deleteById(idQuestion)
+        return if (exists) {
+            responseRepository.deleteById(idQuestion);
+            true
+        }else{
+            false;
         }
     }
+
      fun getBilan(): Bilan? {
         return if(this.getResponses().isNotEmpty()){
             Bilan().calculerBilan(this.getResponses())

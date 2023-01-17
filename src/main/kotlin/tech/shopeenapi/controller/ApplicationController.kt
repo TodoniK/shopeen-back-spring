@@ -21,7 +21,7 @@ class ApplicationControllerController(private val applicationService: Applicatio
         ]
     )
     @GetMapping("/appli")
-    fun getApplicationsHistoric(): ResponseEntity<List<Application>> =
+    fun getApplicationsHistorical(): ResponseEntity<List<Application>> =
         ResponseEntity.ok(applicationService.getApplicationsHistorical())
 
     @Operation(summary = "Get all bilan of one app", description = "Returns multiples dated bilans of Orange developed application if successful")
@@ -32,7 +32,7 @@ class ApplicationControllerController(private val applicationService: Applicatio
         ]
     )
     @GetMapping("/appli/{nomApp}")
-    fun getApplicationsHistoricByName(@PathVariable nomApp: String): ResponseEntity<List<Application>> =
+    fun getApplicationHistoricalByName(@PathVariable nomApp: String): ResponseEntity<List<Application>> =
         ResponseEntity.ok(applicationService.getApplicationsHistoricalByName(nomApp))
 
     @Operation(summary = "Post a dated historic bilan of an Orange developed application", description = "Returns 200 if added correctly")

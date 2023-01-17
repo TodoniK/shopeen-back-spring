@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Document(collection = "response")
 @TypeAlias("Response")
 data class ResponseDTO(
-    @Id // ObjectId
+    @Id
     val idQuestion: String = "Default question id",
     val userResponse: Int = 0,
     val consoMoy: Double = 0.0

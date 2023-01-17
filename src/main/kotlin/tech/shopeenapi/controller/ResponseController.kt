@@ -23,7 +23,7 @@ class ResponsesController(private val responsesService: ResponsesService) {
         ]
     )
     @GetMapping("/responses")
-    fun getResponses(): ResponseEntity<List<Response>> =
+    fun getAllResponses(): ResponseEntity<List<Response>> =
         ResponseEntity.ok(responsesService.getResponses())
 
     @Operation(summary = "Get a specific response by id", description = "Returns a unique response")
@@ -34,7 +34,7 @@ class ResponsesController(private val responsesService: ResponsesService) {
         ]
     )
     @GetMapping("/responses/{idQuestion}")
-    fun getResponse(@PathVariable idQuestion: String) =
+    fun getResponseById(@PathVariable idQuestion: String) =
         ResponseEntity.ok(responsesService.getResponseById(idQuestion))
 
     @Operation(summary = "Send to DB a response entered by the user", description = "Returns 200 if added correctly")
@@ -57,8 +57,15 @@ class ResponsesController(private val responsesService: ResponsesService) {
         ]
     )
     @DeleteMapping("/responses/{idQuestion}")
-    fun deleteResponse(@PathVariable idQuestion: String): ResponseEntity<Unit> =
-        ResponseEntity(responsesService.deleteResponse(idQuestion), HttpStatus.OK)
+    fun deleteResponseById(@PathVariable idQuestion: String): ResponseEntity<Unit> {
+        val retour = responsesService.deleteResponse(idQuestion)
+        return if(retour){
+            ResponseEntity(HttpStatus.OK)
+        }else{
+            ResponseEntity(HttpStatus.CONFLICT)
+        }
+    }
+
 
     @Operation(summary = "Get final power bilan with all responses", description = "Returns a bilan composed of 3 values if successful")
     @ApiResponses(

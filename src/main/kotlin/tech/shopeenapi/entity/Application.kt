@@ -44,6 +44,6 @@ data class Application(
         description = "Measurement date of the system bilan",
         example = "16/02/2002 16:45",
     )
-    val measurementDate: LocalDate = LocalDate.now()
+    val measurementDate: String = LocalDate.now().toString()
 
 )

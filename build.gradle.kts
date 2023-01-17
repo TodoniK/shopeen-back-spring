@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 plugins {
@@ -42,19 +40,4 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-val now: LocalDateTime = LocalDateTime.now()
-val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-val formatterIso8601: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-val integrationVariables = listOf(
-	"BASE_URL=http://localhost:8080",
-	"today=${now.format(formatter)}",
-	"today_iso_8601=${now.format(formatterIso8601)}"
-)
-
-/*task<RunHurlTask>("runIntegration") {
-	inputDirectories = listOf(File("$projectDir/integration/tests"))
-	variables = integrationVariables
-}*/
-
 
