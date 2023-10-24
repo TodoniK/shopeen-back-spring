@@ -1,4 +1,4 @@
-package tech.shopeenapi
+package com.orange.shopeenback
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

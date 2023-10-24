@@ -1,9 +1,9 @@
-package tech.shopeenapi.service.unit
+package com.orange.shopeenback.service.unit
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import tech.shopeenapi.entity.Bilan
-import tech.shopeenapi.entity.Response
+import com.orange.shopeenback.entity.Bilan
+import com.orange.shopeenback.entity.Response
 
 internal class BilanShould{
 

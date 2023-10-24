@@ -1,4 +1,4 @@
-package tech.shopeenapi.dto
+package com.orange.shopeenback.dto
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.TypeAlias

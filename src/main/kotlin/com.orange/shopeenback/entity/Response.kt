@@ -1,9 +1,10 @@
-package tech.shopeenapi.entity
+package com.orange.shopeenback.entity
 
 import io.swagger.v3.oas.annotations.media.Schema
 
 @Schema(description = "Response of a quizz sent by the front, typed by the user")
 data class Response(
+
     @field:Schema(
         description = "Question identifier, used to manage responses",
         example = "nbPC",

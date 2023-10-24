@@ -1,11 +1,11 @@
-package tech.shopeenapi.service
+package com.orange.shopeenback.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.client.HttpStatusCodeException
-import tech.shopeenapi.dto.ResponseDTO
-import tech.shopeenapi.entity.Bilan
-import tech.shopeenapi.entity.Response
-import tech.shopeenapi.repository.ResponseRepository
+import com.orange.shopeenback.dto.ResponseDTO
+import com.orange.shopeenback.entity.Bilan
+import com.orange.shopeenback.entity.Response
+import com.orange.shopeenback.repository.ResponseRepository
 
 @Service
 class ResponsesService(private val responseRepository: ResponseRepository) {

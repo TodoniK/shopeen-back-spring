@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.spring") version "1.7.21"
 }
 
-group = "tech.shopeenapi"
+group = "com.orange.shopeenback"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 

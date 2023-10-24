@@ -1,4 +1,4 @@
-package tech.shopeenapi.dto
+package com.orange.shopeenback.dto
 
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id

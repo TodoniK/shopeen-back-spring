@@ -1,4 +1,4 @@
-package tech.shopeenapi.service.unit
+package com.orange.shopeenback.service.unit
 
 import io.mockk.every
 import io.mockk.mockkClass
@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import tech.shopeenapi.dto.ResponseDTO
-import tech.shopeenapi.entity.Response
-import tech.shopeenapi.repository.ResponseRepository
-import tech.shopeenapi.service.ResponsesServiceImpl
-import tech.shopeenapi.service.toResponseEntity
+import com.orange.shopeenback.dto.ResponseDTO
+import com.orange.shopeenback.entity.Response
+import com.orange.shopeenback.repository.ResponseRepository
+import com.orange.shopeenback.service.ResponsesServiceImpl
+import com.orange.shopeenback.service.toResponseEntity
 import java.util.*
 
 internal class ResponsesServiceImplShould{

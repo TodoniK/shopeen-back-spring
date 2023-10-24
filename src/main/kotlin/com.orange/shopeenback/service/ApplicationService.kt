@@ -1,10 +1,10 @@
-package tech.shopeenapi.service
+package com.orange.shopeenback.service
 
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
-import tech.shopeenapi.dto.ApplicationDTO
-import tech.shopeenapi.entity.Application
-import tech.shopeenapi.repository.ApplicationRepository
+import com.orange.shopeenback.dto.ApplicationDTO
+import com.orange.shopeenback.entity.Application
+import com.orange.shopeenback.repository.ApplicationRepository
 import java.time.LocalDate
 
 

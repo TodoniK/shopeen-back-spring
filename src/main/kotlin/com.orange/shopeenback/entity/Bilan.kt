@@ -1,4 +1,4 @@
-package tech.shopeenapi.entity
+package com.orange.shopeenback.entity
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kotlin.math.roundToInt
@@ -15,6 +15,7 @@ class Bilan(
         type = "double",
     )
     var bilanEuro = userResponse * prixKhwEntreprise
+
     @field:Schema(
         description = "Private bilan value, represents Kwh consumed by all equipment",
         example = "327.25",
